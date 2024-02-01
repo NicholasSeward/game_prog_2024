@@ -194,12 +194,13 @@ animations = [{
 size = Vector2(64, 64)
 
 [node name="MainDude" type="CharacterBody2D"]
+position = Vector2(32, 32)
 script = ExtResource("1_fnqkn")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_biv56")
-animation = &"right"
+animation = &"down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ipell")

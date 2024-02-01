@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmuscbshliqsd"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_fo4cv"]
+[ext_resource type="Texture2D" uid="uid://ba4fhx1f1i7bw" path="res://sokoban_tilesheet.png" id="2_ifoh2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_godq0"]
+atlas = ExtResource("2_ifoh2")
+region = Rect2(768, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e1hn1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_godq0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yl8wt"]
+radius = 12.0
+
+[node name="bullet" type="Node2D"]
+metadata/_edit_group_ = true
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(32, 0)
+script = ExtResource("1_fo4cv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
+sprite_frames = SubResource("SpriteFrames_e1hn1")
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+shape = SubResource("CircleShape2D_yl8wt")
