@@ -1,6 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxqeyc5xl2thj"]
+[gd_scene load_steps=7 format=3 uid="uid://bxqeyc5xl2thj"]
 
 [ext_resource type="Texture2D" uid="uid://ba4fhx1f1i7bw" path="res://sokoban_tilesheet.png" id="1_2jm1t"]
+[ext_resource type="PackedScene" uid="uid://cxpf5jrf80ybn" path="res://enemy.tscn" id="2_37o2c"]
+[ext_resource type="PackedScene" uid="uid://dmefqyig5yurc" path="res://main_dude.tscn" id="3_bejot"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c8m1v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2b1qu"]
 texture = ExtResource("1_2jm1t")
@@ -21,10 +25,18 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_u7t2b"]
 tile_size = Vector2i(64, 64)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_c8m1v")
 sources/0 = SubResource("TileSetAtlasSource_2b1qu")
 
 [node name="level" type="TileMap"]
 tile_set = SubResource("TileSet_u7t2b")
 format = 2
 layer_0/tile_data = PackedInt32Array(65540, 458752, 6, 131076, 458752, 6, 196612, 458752, 6, 262148, 458752, 6, 327684, 458752, 6, 327685, 458752, 6, 393221, 458752, 6, 393222, 458752, 6, 393223, 458752, 6, 393224, 458752, 6, 393225, 458752, 6, 393226, 458752, 6, 327690, 458752, 6, 262154, 458752, 6, 196618, 458752, 6, 131082, 458752, 6, 131081, 458752, 6, 65545, 458752, 6, 65544, 458752, 6, 65543, 458752, 6, 65542, 458752, 6, 65541, 458752, 6, 327689, 720896, 6, 327688, 720896, 7, 327687, 720896, 6, 327686, 720896, 6, 262150, 720896, 6, 262149, 720896, 6, 196613, 720896, 6, 131077, 720896, 6, 131078, 720896, 6, 131079, 720896, 6, 131080, 720896, 6, 196616, 720896, 6, 196615, 720896, 6, 196614, 720896, 6, 196617, 720896, 6, 262153, 720896, 6, 262152, 720896, 6, 262151, 720896, 6)
+
+[node name="Enemy" parent="." instance=ExtResource("2_37o2c")]
+position = Vector2(594, 339)
+
+[node name="MainDude" parent="." instance=ExtResource("3_bejot")]
+position = Vector2(352, 224)

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxpf5jrf80ybn"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_xgs11"]
+[ext_resource type="Texture2D" uid="uid://ba4fhx1f1i7bw" path="res://sokoban_tilesheet.png" id="2_6x3tc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pksiq"]
+atlas = ExtResource("2_6x3tc")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jaqwa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pksiq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pndmo"]
+size = Vector2(62, 62)
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_xgs11")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jaqwa")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_pndmo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

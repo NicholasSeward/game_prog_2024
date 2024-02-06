@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://csttaeem72sma"]
+
+[ext_resource type="Texture2D" uid="uid://ba4fhx1f1i7bw" path="res://sokoban_tilesheet.png" id="1_0v154"]
+[ext_resource type="PackedScene" uid="uid://cxpf5jrf80ybn" path="res://enemy.tscn" id="2_ixaqr"]
+[ext_resource type="PackedScene" uid="uid://dmefqyig5yurc" path="res://main_dude.tscn" id="3_tiue6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c8m1v"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2b1qu"]
+texture = ExtResource("1_0v154")
+texture_region_size = Vector2i(64, 64)
+7:6/0 = 0
+7:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:6/0/physics_layer_0/angular_velocity = 0.0
+7:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+11:6/0 = 0
+11:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:6/0/physics_layer_0/angular_velocity = 0.0
+11:7/0 = 0
+11:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:7/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_u7t2b"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_c8m1v")
+sources/0 = SubResource("TileSetAtlasSource_2b1qu")
+
+[node name="level" type="TileMap"]
+tile_set = SubResource("TileSet_u7t2b")
+format = 2
+layer_0/tile_data = PackedInt32Array(65540, 458752, 6, 131076, 458752, 6, 196612, 458752, 6, 262148, 720896, 6, 327684, 720896, 6, 327685, 720896, 6, 393221, 720896, 6, 393222, 720896, 6, 393223, 720896, 6, 393224, 720896, 6, 393225, 458752, 6, 393226, 458752, 6, 327690, 458752, 6, 262154, 458752, 6, 196618, 458752, 6, 131082, 458752, 6, 131081, 458752, 6, 65545, 458752, 6, 65544, 458752, 6, 65543, 458752, 6, 65542, 458752, 6, 65541, 458752, 6, 327689, 720896, 6, 327688, 720896, 7, 327687, 720896, 6, 327686, 720896, 6, 262150, 720896, 6, 262149, 720896, 6, 196613, 720896, 6, 131077, 720896, 6, 131078, 720896, 6, 131079, 720896, 6, 131080, 720896, 6, 196616, 720896, 6, 196615, 720896, 6, 196614, 720896, 6, 196617, 720896, 6, 262153, 720896, 6, 262152, 720896, 6, 262151, 720896, 6, 458759, 458752, 6, 458758, 458752, 6, 458757, 458752, 6, 327683, 720896, 6, 327682, 720896, 6, 327681, 720896, 6, 327680, 720896, 6, 262145, 720896, 6, 262146, 720896, 6, 262147, 720896, 6, 262144, 720896, 6, 458756, 458752, 6, 393220, 458752, 6, 393219, 458752, 6, 393218, 458752, 6, 393217, 458752, 6, 393216, 458752, 6, 458751, 458752, 6, 393215, 458752, 6, 327679, 458752, 6, 262143, 458752, 6, 196608, 458752, 6, 196609, 458752, 6, 196610, 720896, 6, 196611, 720896, 6, 458760, 458752, 6, 458761, 458752, 6, 131074, 720896, 6, 65538, 720896, 6, 2, 720896, 6, 3, 720896, 6, 65539, 720896, 6, 131075, 720896, 6, 4, 720896, 6, 5, 720896, 6, 6, 720896, 6, 7, 720896, 6, 8, 720896, 6, 9, 720896, 6, -65527, 720896, 6, -65528, 720896, 6, -131064, 720896, 6, -131065, 720896, 6, -65529, 720896, 6, -65530, 720896, 6, -65531, 720896, 6, -65532, 720896, 6, -65533, 720896, 6, -65534, 720896, 6, 131073, 458752, 6, 65537, 458752, 6, 1, 458752, 6, -65535, 458752, 6, -131071, 458752, 6, -131070, 458752, 6, -131069, 458752, 6, -131068, 458752, 6, -131067, 458752, 6, -131066, 458752, 6, -196602, 458752, 6, -196601, 458752, 6, -196600, 458752, 6, -196599, 458752, 6, -131063, 458752, 6, -131062, 458752, 6, -65526, 458752, 6, 10, 458752, 6, 65546, 458752, 6)
+
+[node name="Enemy" parent="." instance=ExtResource("2_ixaqr")]
+position = Vector2(44, 341)
+
+[node name="MainDude" parent="." instance=ExtResource("3_tiue6")]
+position = Vector2(352, 224)
+
+[node name="Enemy2" parent="." instance=ExtResource("2_ixaqr")]
+position = Vector2(514, 259)
+
+[node name="Enemy3" parent="." instance=ExtResource("2_ixaqr")]
+position = Vector2(404, 386)
+
+[node name="Enemy4" parent="." instance=ExtResource("2_ixaqr")]
+position = Vector2(529, -1)

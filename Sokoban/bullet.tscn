@@ -32,6 +32,10 @@ script = ExtResource("1_fo4cv")
 sprite_frames = SubResource("SpriteFrames_e1hn1")
 
 [node name="Area2D" type="Area2D" parent="Node2D"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
 shape = SubResource("CircleShape2D_yl8wt")
+
+[connection signal="body_entered" from="Node2D/Area2D" to="Node2D" method="_on_area_2d_body_entered"]
