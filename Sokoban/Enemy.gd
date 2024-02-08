@@ -1,8 +1,10 @@
 extends Node2D
 var speed=30
+var astar = AStar2D.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_parent().
 	pass # Replace with function body.
 
 
@@ -17,4 +19,5 @@ func _process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	body.kill()
+	if body.name=="MainDude":
+		body.kill()
