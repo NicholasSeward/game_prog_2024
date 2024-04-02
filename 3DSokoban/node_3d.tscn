@@ -1,0 +1,120 @@
+[gd_scene load_steps=16 format=3 uid="uid://dycgbqvbo8v06"]
+
+[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_uyvpp"]
+[ext_resource type="Texture2D" uid="uid://dqwhfgcjhywoa" path="res://Bricks_COL_1K_METALNESS.png" id="2_v6n0l"]
+[ext_resource type="Texture2D" uid="uid://bsnyc4l4q21ki" path="res://Bricks_NRM_1K_METALNESS.png" id="3_ftcfh"]
+[ext_resource type="Texture2D" uid="uid://poq2bt3suocj" path="res://Bricks_AO_1K_METALNESS.png" id="3_ry28h"]
+[ext_resource type="Texture2D" uid="uid://bre6l5xnpep5j" path="res://Bricks_BUMP_1K_METALNESS.png" id="4_dbt31"]
+[ext_resource type="Texture2D" uid="uid://ch2xnk25r2r1k" path="res://Bricks_ROUGHNESS_1K_METALNESS.png" id="4_wnwsg"]
+[ext_resource type="Texture2D" uid="uid://bfspltxjcu5cb" path="res://Bricks_METALNESS_1K_METALNESS.png" id="5_q7wx5"]
+[ext_resource type="Script" path="res://StaticBody3D3.gd" id="8_3augs"]
+[ext_resource type="ArrayMesh" uid="uid://dgjks4cu5ww2o" path="res://theThing.obj" id="9_ovyss"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i7n0x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q6n06"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c0pc3"]
+albedo_texture = ExtResource("2_v6n0l")
+metallic = 1.0
+metallic_texture = ExtResource("5_q7wx5")
+roughness = 0.47
+roughness_texture = ExtResource("4_wnwsg")
+normal_enabled = true
+normal_scale = 2.3
+normal_texture = ExtResource("3_ftcfh")
+ao_enabled = true
+ao_texture = ExtResource("3_ry28h")
+heightmap_enabled = true
+heightmap_scale = 4.515
+heightmap_texture = ExtResource("4_dbt31")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wh43c"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pl5ck"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8otd"]
+albedo_texture = ExtResource("2_v6n0l")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_offset = Vector3(0.5, 0, 0)
+uv2_scale = Vector3(0.1, 0.1, 0.1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59128, 0)
+script = ExtResource("1_uyvpp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47585, 0)
+shape = SubResource("CapsuleShape3D_i7n0x")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+far = 464.91
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0669, 0)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24121, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(12, 0, 0, 0, 1, 0, 0, 0, 12, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_q6n06")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_c0pc3")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = 27.0
+offset_top = 31.0
+offset_right = 229.0
+offset_bottom = 237.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(200, 200)
+size_2d_override = Vector2i(200, 200)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15.0064, 0)
+fov = 36.4
+size = 15.0
+near = 0.001
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.502054, 0.864836, 0, -0.864836, -0.502054, 0, 6.70028, 0)
+shadow_enabled = true
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.04292, 0.5, 2.53374)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_q6n06")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D2"]
+material = SubResource("StandardMaterial3D_wh43c")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99017, 0.5, -3.20514)
+script = ExtResource("8_3augs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_q6n06")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D3"]
+material = SubResource("StandardMaterial3D_pl5ck")
+
+[node name="TheThing" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.090545, 0, -0.0424452, 0, 0.1, 0, 0.0424452, 0, 0.090545, 0.308371, 0, -4.47355)
+material_override = SubResource("StandardMaterial3D_m8otd")
+mesh = ExtResource("9_ovyss")

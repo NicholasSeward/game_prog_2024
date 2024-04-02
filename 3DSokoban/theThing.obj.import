@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dgjks4cu5ww2o"
+path="res://.godot/imported/theThing.obj-faae995aec7610a15012ff586289573c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/theThing.obj-faae995aec7610a15012ff586289573c.mesh"]
+
+source_file="res://theThing.obj"
+dest_files=["res://.godot/imported/theThing.obj-faae995aec7610a15012ff586289573c.mesh", "res://.godot/imported/theThing.obj-faae995aec7610a15012ff586289573c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
