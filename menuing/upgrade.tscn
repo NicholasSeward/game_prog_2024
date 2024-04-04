@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8868sqrgifav"]
+
+[ext_resource type="Script" path="res://upgrade.gd" id="1_2545k"]
+
+[sub_resource type="Theme" id="Theme_u420e"]
+default_font_size = 50
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_2545k")
+
+[node name="double" type="Button" parent="."]
+offset_left = 426.0
+offset_top = 162.0
+offset_right = 661.0
+offset_bottom = 239.0
+text = "Double Click (click_power*10)"
+
+[node name="auto" type="Button" parent="."]
+offset_left = 428.0
+offset_top = 278.0
+offset_right = 663.0
+offset_bottom = 355.0
+text = "Autoclick (10*autoclicks)"
+
+[node name="money" type="RichTextLabel" parent="."]
+offset_left = 53.0
+offset_top = 21.0
+offset_right = 479.0
+offset_bottom = 144.0
+theme = SubResource("Theme_u420e")
+text = "asdf"
+
+[node name="return" type="Button" parent="."]
+offset_left = 856.0
+offset_top = 556.0
+offset_right = 1091.0
+offset_bottom = 633.0
+text = "return"
+
+[connection signal="pressed" from="double" to="." method="_on_double"]
+[connection signal="pressed" from="auto" to="." method="_on_auto"]
+[connection signal="pressed" from="return" to="." method="_on_return"]

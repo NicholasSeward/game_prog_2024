@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx88w5qeqejay"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_o334b"]
+[ext_resource type="Script" path="res://pausemenu.gd" id="2_pom3v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fnkfm"]
+bg_color = Color(1, 0.152941, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="Theme" id="Theme_fru3f"]
+default_font_size = 36
+
+[node name="Node2D" type="Node2D"]
+process_mode = 3
+
+[node name="game" type="Node2D" parent="."]
+process_mode = 1
+script = ExtResource("1_o334b")
+
+[node name="Button" type="Button" parent="game"]
+offset_left = 416.0
+offset_top = 188.0
+offset_right = 690.0
+offset_bottom = 432.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_fnkfm")
+
+[node name="money" type="RichTextLabel" parent="game"]
+offset_left = 21.0
+offset_top = 6.0
+offset_right = 411.0
+offset_bottom = 184.0
+theme = SubResource("Theme_fru3f")
+text = "asdfasdf"
+
+[node name="Timer" type="Timer" parent="game"]
+autostart = true
+
+[node name="upgrade" type="Button" parent="game"]
+offset_left = 871.0
+offset_top = 513.0
+offset_right = 1127.0
+offset_bottom = 635.0
+text = "UPGRADE"
+
+[node name="pausemenu" type="Node2D" parent="."]
+visible = false
+script = ExtResource("2_pom3v")
+
+[node name="Panel" type="Panel" parent="pausemenu"]
+offset_left = -53.0
+offset_top = -30.0
+offset_right = 1161.0
+offset_bottom = 678.0
+
+[node name="Button" type="Button" parent="pausemenu"]
+offset_left = 434.0
+offset_top = 254.0
+offset_right = 671.0
+offset_bottom = 366.0
+text = "RESUME"
+
+[connection signal="pressed" from="game/Button" to="game" method="_on_button_pressed"]
+[connection signal="timeout" from="game/Timer" to="game" method="_autoclick"]
+[connection signal="pressed" from="game/upgrade" to="game" method="_on_upgrade"]
+[connection signal="pressed" from="pausemenu/Button" to="pausemenu" method="_on_button_pressed"]
