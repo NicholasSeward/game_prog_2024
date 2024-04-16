@@ -19,23 +19,29 @@ func _on_connect(result, response_code, headers, body):
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	uuid=json["unique_id"]
 	nonce=json["nonce"]
+	var x=json["x"]
+	var y=json["y"]
+	$dude.position=Vector2(x,y);
+	
 
 func update_my_position(x,y):
 	$HTTPSet.request("https://seward.pythonanywhere.com/set_position?x=%d&y=%d&unique_id=%s&nonce=%s"%[x,y,uuid,nonce])
+	$dude.position=Vector2(x,y)
 
 func _on_request_completed(result, response_code, headers, body):
 	print("Asdf")
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	for unique_id in json:
-		if unique_id==uuid:
-			continue
+		
 		var item=json[unique_id]
 		print(item)
 		var x = item["x"]
 		var y = item["y"]
 
 		# Check if the unique_id already exists in the dictionary
-		if dudes.has(unique_id):
+		if unique_id==uuid:
+			$dude.position=Vector2(x, y)
+		elif dudes.has(unique_id):
 			# Update the object's position
 			var obj = dudes[unique_id]
 			obj.position = Vector2(x, y)
@@ -48,20 +54,23 @@ func _on_request_completed(result, response_code, headers, body):
 
 func _process(delta):
 	var changed=false
+	var x=$dude.position.x
+	var y=$dude.position.y
 	if Input.is_action_just_pressed("ui_left"):
-		$dude.position.x-=16
+		x-=32
 		changed=true
 	if Input.is_action_just_pressed("ui_right"):
-		$dude.position.x+=16
+		x+=32
 		changed=true
 	if Input.is_action_just_pressed("ui_up"):
-		$dude.position.y-=16
+		y-=32
 		changed=true
 	if Input.is_action_just_pressed("ui_down"):
-		$dude.position.y+=16
+		y+=32
 		changed=true
 	if changed:
-		update_my_position($dude.position.x,$dude.position.y)
+		
+		update_my_position(x,y)
 	
 		
 	pass
