@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceb6arlkutpub"]
+
+[ext_resource type="Script" path="res://Node2D.gd" id="1_d15uu"]
+[ext_resource type="Texture2D" uid="uid://d17tv7ofhepru" path="res://icon.svg" id="2_hnb6x"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_d15uu")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+use_threads = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="HTTPConnect" type="HTTPRequest" parent="."]
+use_threads = true
+
+[node name="HTTPSet" type="HTTPRequest" parent="."]
+use_threads = true
+
+[node name="dude" type="Sprite2D" parent="."]
+rotation = 0.169297
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_hnb6x")
+
+[connection signal="timeout" from="Timer" to="." method="refresh_positions"]

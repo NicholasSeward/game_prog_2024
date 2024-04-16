@@ -4,7 +4,7 @@ var astar = AStar2D.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_parent().
+	#get_parent().
 	pass # Replace with function body.
 
 
