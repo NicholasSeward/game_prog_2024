@@ -2,18 +2,17 @@ extends Node2D
 
 var dude_texture=preload("res://icon.svg")
 var dudes={}
-var url="https://seward.pythonanywhere.com/get_positions"
-var uuid="234";
-var nonce="23";
+var uuid="234"
+var nonce="23"
 func refresh_positions():
-	$HTTPRequest.request(url)
+	$HTTPRequest.request("https://seward.pythonanywhere.com/get_positions?unique_id=%s&nonce=%s"%[uuid,nonce])
 
 func _ready():
 	$HTTPRequest.request_completed.connect(self._on_request_completed)
 	$HTTPConnect.request_completed.connect(self._on_connect)
 	$HTTPConnect.request("https://seward.pythonanywhere.com/connect")
 	# Configure the HTTPRequest node
-	refresh_positions()
+	
 
 func _on_connect(result, response_code, headers, body):
 	var json = JSON.parse_string(body.get_string_from_utf8())
@@ -22,15 +21,19 @@ func _on_connect(result, response_code, headers, body):
 	var x=json["x"]
 	var y=json["y"]
 	$dude.position=Vector2(x,y);
+	refresh_positions();
 	
 
 func update_my_position(x,y):
 	$HTTPSet.request("https://seward.pythonanywhere.com/set_position?x=%d&y=%d&unique_id=%s&nonce=%s"%[x,y,uuid,nonce])
-	$dude.position=Vector2(x,y)
+	#$dude.position=Vector2(x,y)
 
 func _on_request_completed(result, response_code, headers, body):
-	print("Asdf")
+	print(body.get_string_from_utf8())
 	var json = JSON.parse_string(body.get_string_from_utf8())
+	if not json:
+		return
+	
 	for unique_id in json:
 		
 		var item=json[unique_id]
@@ -49,7 +52,14 @@ func _on_request_completed(result, response_code, headers, body):
 			# Create a new object, set its position, and add it to the dictionary
 			var new_obj = get_circle(x,y)
 			dudes[unique_id] = new_obj
-	print(json)
+			
+		var to_delete=[]
+		for uuid in dudes:
+			if uuid not in json:
+				to_delete.append(uuid)
+		for uuid in to_delete:
+			remove_child(dudes[uuid])
+			dudes.erase(uuid)
 
 
 func _process(delta):
